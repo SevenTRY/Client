@@ -52,6 +52,7 @@ void SocketManager::testNet(){
     FILE* file;
     
     file = fopen(FileUtils::getInstance()->fullPathForFilename("text.txt").c_str(), "r");
+    
     str_cli(file, sockfd);
     
 }

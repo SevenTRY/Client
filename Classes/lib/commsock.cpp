@@ -31,3 +31,13 @@ pid_t Fork(void)
         err_sys("fork error");
     return(pid);
 }
+
+int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
+           struct timeval *timeout)
+{
+    int		n;
+    
+    if ( (n = select(nfds, readfds, writefds, exceptfds, timeout)) < 0)
+        err_sys("select error");
+    return(n);		/* can return 0 on timeout */
+}

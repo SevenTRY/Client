@@ -14,6 +14,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include <sys/select.h>
+#include <sys/time.h>
 
 
 #define	SA	struct sockaddr
@@ -30,6 +32,8 @@
 int Socket(int family,int type,int protocol);
 void Connect(int fd, const struct sockaddr *sa, socklen_t salen);
 pid_t Fork(void);
+int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
+           struct timeval *timeout);
 
 /*error .h*/
 void err_sys(const char *fmt, ...);
