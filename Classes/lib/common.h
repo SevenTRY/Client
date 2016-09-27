@@ -34,6 +34,9 @@ void Connect(int fd, const struct sockaddr *sa, socklen_t salen);
 pid_t Fork(void);
 int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
            struct timeval *timeout);
+ssize_t Read(int fd, void *ptr, size_t nbytes);
+void Write(int fd, void *ptr, size_t nbytes);
+void Shutdown(int fd, int how);
 
 /*error .h*/
 void err_sys(const char *fmt, ...);

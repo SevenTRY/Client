@@ -21,6 +21,7 @@ void Connect(int fd, const struct sockaddr *sa, socklen_t salen)
 {
     if (connect(fd, sa, salen) < 0)
         err_sys("connect error");
+    CCLOG("connect succeed!");
 }
 
 pid_t Fork(void)
@@ -40,4 +41,25 @@ int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
     if ( (n = select(nfds, readfds, writefds, exceptfds, timeout)) < 0)
         err_sys("select error");
     return(n);		/* can return 0 on timeout */
+}
+
+ssize_t Read(int fd, void *ptr, size_t nbytes)
+{
+    ssize_t		n;
+    
+    if ( (n = read(fd, ptr, nbytes)) == -1)
+        err_sys("read error");
+    return(n);
+}
+
+void Write(int fd, void *ptr, size_t nbytes)
+{
+    if (write(fd, ptr, nbytes) != nbytes)
+        err_sys("write error");
+}
+
+void Shutdown(int fd, int how)
+{
+    if (shutdown(fd, how) < 0)
+        err_sys("shutdown error");
 }
